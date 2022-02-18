@@ -34,7 +34,7 @@ public class Emprestimo {
             System.out.println("Valor final do empréstimo para 3 parcelas: R$ " + valorFinal);
         }else {
 
-            System.out.println("Quantidade de parcelas não aceita");
+            System.out.println("*** Quantidade de parcelas não aceita ***");
 
         }
     }
