@@ -1,5 +1,10 @@
 package entendendo.estruturadedados;
 
+/**
+ * Refatoração Generics
+ * @param <T>
+ */
+
 public class No<T> {
 
    private T conteudo;

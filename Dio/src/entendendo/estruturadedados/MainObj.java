@@ -8,7 +8,7 @@ public class MainObj {
 
     public static void main(String[] args) {
 
-        //atribuição por tipos primitivos
+        //atribuição por tipos primitivos.
         int intA= 1;
         int intB = intA; // tipos primitivos: copia exatamente o valor da memória
 
@@ -17,7 +17,7 @@ public class MainObj {
         System.out.println("intA = " + intA + " - intB = " + intB);
         System.out.println("---------------------");
 
-        // atribuição por objeto
+        // atribuição por objeto.
         MeuObj objA = new MeuObj(1);
         MeuObj objB = objA; // objeto: aponta para o mesmo endereço de memória (referência de memória)
 

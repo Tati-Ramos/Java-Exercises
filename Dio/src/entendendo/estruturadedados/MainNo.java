@@ -1,5 +1,9 @@
 package entendendo.estruturadedados;
 
+/**
+ * Refatoração Generics
+ */
+
 public class MainNo {
 
     public static void main(String[] args) {
