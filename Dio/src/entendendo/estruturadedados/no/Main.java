@@ -4,7 +4,7 @@ package entendendo.estruturadedados.no;
  * Refatoração Generics
  */
 
-public class MainNo {
+public class Main {
 
     public static void main(String[] args) {
 

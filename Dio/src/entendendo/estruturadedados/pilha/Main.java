@@ -4,7 +4,7 @@ package entendendo.estruturadedados.pilha;
  * Referência de memória
  */
 
-public class MainPilha {
+public class Main {
 
     public static void main(String[] args) {
 

@@ -1,6 +1,6 @@
 package entendendo.estruturadedados.fila;
 
-public class MainFila {
+public class Main {
 
     public static void main(String[] args) {
 

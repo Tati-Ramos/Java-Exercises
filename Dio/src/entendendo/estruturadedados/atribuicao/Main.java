@@ -4,7 +4,7 @@ package entendendo.estruturadedados.atribuicao;
  * Atribuição por referência
  */
 
-public class MainObj {
+public class Main {
 
     public static void main(String[] args) {
 
