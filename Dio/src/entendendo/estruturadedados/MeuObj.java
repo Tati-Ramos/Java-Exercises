@@ -1,7 +1,7 @@
 package entendendo.estruturadedados;
 
 /**
- * Atribuição por referência
+ * Atribuição por referência.
  */
 public class MeuObj {
 
