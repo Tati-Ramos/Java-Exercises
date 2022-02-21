@@ -1,8 +1,8 @@
-package entendendo.estruturadedados;
+package entendendo.estruturadedados.pilha;
 
 public class Pilha {
 
-    private  NoPilha refNoEntradaPilha;
+    private NoPilha refNoEntradaPilha;
 
     public Pilha() {
         this.refNoEntradaPilha = null;

@@ -1,4 +1,4 @@
-package entendendo.estruturadedados;
+package entendendo.estruturadedados.fila;
 
 public class NoFila<T> {
 

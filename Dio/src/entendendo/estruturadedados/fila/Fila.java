@@ -1,4 +1,6 @@
-package entendendo.estruturadedados;
+package entendendo.estruturadedados.fila;
+
+import entendendo.estruturadedados.fila.NoFila;
 
 public class Fila<T> {
 

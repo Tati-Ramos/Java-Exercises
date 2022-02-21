@@ -1,4 +1,4 @@
-package entendendo.estruturadedados;
+package entendendo.estruturadedados.pilha;
 
 public class NoPilha {
 

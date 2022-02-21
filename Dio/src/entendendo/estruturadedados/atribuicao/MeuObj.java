@@ -1,4 +1,4 @@
-package entendendo.estruturadedados;
+package entendendo.estruturadedados.atribuicao;
 
 /**
  * Atribuição por referência.
