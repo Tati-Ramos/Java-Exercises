@@ -1,4 +1,4 @@
-package entendendo.estruturadedados.lista;
+package entendendo.estruturadedados.listaencadeada;
 
 public class ListaEncadeada<T> {
 
