@@ -4,63 +4,70 @@ import java.io.*;
 
 // Faça uma cópia do arquivo "recomendacoes.txt" e agora adicione 3 recomendações de livros;
 public class Exercicio3IOCaracter {
-    public static void copiarArquivo() throws IOException {
-        File f = new File("C:\\Users\\tatia\\Documents\\Java Exercises\\Dio\\recomendacoes.txt");
-        String nameArquivo = f.getName();
+    public static void copiarArquivo(String arquivo) throws IOException {
+        File f = new File(arquivo); //criando uma referência para o arquivo que será copiado
+        String nomeDoArquivoOriginal = f.getName(); //nome do arquivo original
 
-        /*FileReader r = new FileReader(nameArquivo);
-        BufferedReader br = new BufferedReader(r);*/
+        BufferedReader br = new BufferedReader(new FileReader(nomeDoArquivoOriginal)); //abrir arquivo que será copiado
 
-        BufferedReader br = new BufferedReader(new FileReader(nameArquivo));
-        String line = br.readLine();
+        //formatando o nome do arquivo de copia
+        /*1. pegando tirando a estensão .txt do nome do arquivo original
+          2. acrescentando -copy.txt ao nome do arquivo que será armazenado a copia*/
+        String nomeDoArquivoCopy = nomeDoArquivoOriginal.substring(0, nomeDoArquivoOriginal.indexOf("."))
+                .concat("-copy.txt");
 
-        String nameArquivoCopy = nameArquivo.substring(0,nameArquivo.indexOf(".")).concat("-copy.txt");
-        File fcopy = new File(nameArquivoCopy);
+        File fcopy = new File(nomeDoArquivoCopy);  //criando uma referência para o copia arquivo
+        BufferedWriter bw = new BufferedWriter(new FileWriter(fcopy.getName())); //criando o arquivo copia
 
-        BufferedWriter bw = new BufferedWriter(new FileWriter(fcopy.getName()));
+        String linha = br.readLine(); //lendo as linhas do arquivo que será copiado
+        do { //faça
+            bw.write(linha); //pegue a linha lida no arquivo original "recomendacoes.txt" e armazene no buffer
+            bw.newLine(); //depois insira uma linha
+            linha = br.readLine(); //depois de realizado a cópia da linha acima, preenchemos a linha novamente
+        } while(!(linha == null)); //enquanto a linha for diferente de null, continue copiando.
+        bw.flush(); //terminado o laço, descarrege as informações capturadas no teclado no arquivo recomendacoes.txt
 
-        do {
-            bw.write(line);
-            bw.newLine();
-            bw.flush();
-            line = br.readLine();
-        }while (!(line == null));
-        System.out.printf("Arquivo \"%s\" copiado com sucesso! Com o tamanho '%d' bytes.\n", f.getName(), f.length());
-        System.out.printf("Arquivo \"%s\" criado com sucesso! Com o tamanho '%d' bytes.\n", fcopy.getName(), fcopy.length());
+        PrintWriter pw = new PrintWriter(System.out); //impressão no console
+        pw.printf("Arquivo '%s' criado com sucesso| \n diretório: '%s'\n", fcopy.getName(),
+                fcopy.getAbsolutePath()); //mensagem formatada que será exibida no console
+        pw.println("Agora, faça recomendações de 3 livros: ");
+        pw.flush(); //descarregue a conteúdo do método write no console
 
-        PrintWriter pw = new PrintWriter(System.out);
-        pw.println("Recomende 3 livros: ");
-        pw.flush();
+        adicionarInformacoesArquivoJaExistente(nomeDoArquivoCopy); //executando o método
 
-        adicionarInfoNoArquivo(fcopy.getName());
+        pw.printf("Ok! Tudo certo. Tamanho do arquivo %d bytes.", fcopy.length()); //mensagem formatada no console
+        pw.flush(); //descarregue a conteúdo do método write no console
 
-        pw.printf("Ok! Tudo certo. Tamanho do arquivo '%d' bytes", fcopy.length());
-
-        br.close();
-        bw.close();
-        pw.close();
+        //fechando todos os fluxos
+        br.close(); //fechamos o fluxo de entrada
+        bw.close(); //fechamos o fluxo de saída para escrita no documento
+        pw.close(); //fechamos o fluxo de saída para o console
 
     }
 
-
-public static void adicionarInfoNoArquivo(String arquivo) throws IOException {
+    public static void adicionarInformacoesArquivoJaExistente(String arquivoCopy) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        //padrão decorator para ler (input) do teclado.
+
+        BufferedWriter bw = new BufferedWriter(new FileWriter(arquivoCopy, true));
+        //padrão decorator para escrever (output) no arquivo sem apagar o conteúdo que já existia.
+
         String line = br.readLine();
+        do { //faça
+            bw.write(line); //escreva no buffer interno a linha capturada pelo scanner
+            bw.newLine(); //pule para próxima linha no buffer
+            line = br.readLine(); //pegue a proxima linha do teclado
+        } while(!line.equalsIgnoreCase("fim"));
+        //repita as operações do laço do-while. Quando digitar a palavra 'fim', pare.
+        bw.flush(); //terminado o laço, descarrege as informações capturadas pelo teclado no arquivo recomendacoes.txt
+        //(neste caso não precisaria do método flush já que em seguida fechamos o fluxo: bw.close())
 
-        BufferedWriter bw = new BufferedWriter(new FileWriter(arquivo, true));
-
-        do {
-            bw.write(line);
-            bw.newLine();
-            line = br.readLine();
-        }while (!(line.equalsIgnoreCase("fim")));
-        br.close();
-        bw.close();
-
-}
+        //fechando todos os fluxos
+        br.close(); //fechamos o fluxo de entrada
+        bw.close(); //fechamos o fluxo de saída para escrita no documento
+    }
 
     public static void main(String[] args) throws IOException {
-        copiarArquivo();
+        copiarArquivo("recomendacoes.txt");
     }
-
 }

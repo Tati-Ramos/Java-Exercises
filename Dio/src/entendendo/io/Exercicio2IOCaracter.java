@@ -3,44 +3,46 @@ package entendendo.io;
 import java.io.*;
 import java.util.Scanner;
 
-//abra o teclado para escrever 3 filmes que você recomendaria e armazene em "recomendacoes.txt"
+//abra o teclado para escrever 3 filmes/series que você recomendaria e armazene em "recomendacoes.txt"
 public class Exercicio2IOCaracter {
 
-    public static void lerTecladoEscreverDocumento() throws IOException {
+    public static void abrirTecladoEscreverDocumento() throws IOException {
+        PrintWriter pw = new PrintWriter(System.out); //impressão no console
+        pw.write("Recomende 3 filmes e para finalizar digite 'fim': "); //mensagem que será exibida no console
+        pw.println(); //criando uma nova linha
+        pw.flush(); //descarregue a conteúdo do método write no console
 
-        PrintWriter pw = new PrintWriter(System.out);
-        pw.println("Digite 3 recomendações de filmes: ");
-        pw.flush();
+        Scanner scanner = new Scanner(System.in); //abertura do teclado
+        String line = scanner.nextLine(); //captura da linha do teclado
 
-        Scanner scan = new Scanner(System.in);
-        String line = scan.nextLine();
+        File f = new File("recomendacoes.txt"); //classe utilizada para especificar arquivos ou diretórios.
 
-        File f = new File("recomendacoes.txt");
+        /*Writer w = new FileWriter(f.getName()); //criando o documento recomendacoes.txt
+        BufferedWriter bw = new BufferedWriter(w);*/
+        //criando um buffer interno para armazenar os characters em vez de gravar diretamente no disco.
+        //assim que buffer preenchido ou o gravador fechado, todos os characters do buffer são gravados no disco.
+        BufferedWriter bw = new BufferedWriter(new FileWriter(f.getName())); //padrão decorator
 
-        BufferedWriter bw = new BufferedWriter(new FileWriter(f.getName()));
+        do { //faça
+            bw.write(line); //escreva no buffer interno a linha capturada pelo scanner
+            bw.newLine(); //pule para próxima linha no buffer
+            line = scanner.nextLine(); //pegue a proxima linha do teclado
+        } while(!line.equalsIgnoreCase("fim"));
+        //repita as operações do laço do-while. Quando digitar a palavra 'fim', pare.
+        bw.flush(); //terminado o laço, descarrege as informações capturadas pelo teclado no arquivo recomendacoes.txt
 
-        do {
-            bw.write(line);
-            bw.newLine();
-            bw.flush();
-            line = scan.nextLine();
-        }while (!(line.equalsIgnoreCase("fim")));
+        pw.printf("Tudo certo! Arquivo '%s' foi criado com tamanho '%d' bytes.", f.getName(), f.length());
+        //utilizando o método printf da classe PrintWrite para formatar a mensagem que será exibida no console.
+        pw.flush(); //descarregue a conteúdo do método write no console
+        //(neste caso não precisaria do método flush já que em seguida fechamos o fluxo: pw.close())
 
-        pw.printf("Arquivo \"%s\" foi criado com sucesso!", f.getName());
-        //pw.flush();
-
-        pw.close();
-        scan.close();
-        bw.close();
-
+        //fechando os fluxos
+        scanner.close(); //fechamos o fluxo de entrada através do teclado
+        bw.close(); //fechamos o fluxo de saída para escrita no documento
+        pw.close(); //fechamos o fluxo de saída para o console
     }
-
 
     public static void main(String[] args) throws IOException {
-
-        lerTecladoEscreverDocumento();
-
+        abrirTecladoEscreverDocumento();
     }
-
-
 }
