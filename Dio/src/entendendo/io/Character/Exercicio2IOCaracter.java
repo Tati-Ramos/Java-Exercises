@@ -1,4 +1,4 @@
-package entendendo.io;
+package entendendo.io.Character;
 
 import java.io.*;
 import java.util.Scanner;
